@@ -1,12 +1,11 @@
 import ServiceFactory from './ServiceFactory'
-
-const url = 'https://us-central1-pwa-app-26ca8.cloudfunctions.net'
+import urls from '../database/configUrls'
 
 export default {
   AddNewMeeting (body) {
-    return ServiceFactory.ProccessPostRequest(`${url}/storeMeeting`, body)
+    return ServiceFactory.ProccessPostRequest(`${urls.restApi}/storeMeeting`, body)
   },
   GetMeetings () {
-    return ServiceFactory.ProccessGetRequest(`${url}/meetings`)
+    return ServiceFactory.ProccessGetRequest(`${urls.restApi}/meetings`)
   }
 }

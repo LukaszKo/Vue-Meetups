@@ -6,12 +6,9 @@ self.addEventListener('notificationclick', (event) => {
   let notification = event.notification
   let action = event.action
 
-  console.log('NOTIFICATION CLICK')
-
   if (action === 'confirm') {
     notification.close()
   } else {
-    console.log(action)
     event.waitUntil(
       clients.matchAll()
         .then(clis => {
@@ -32,9 +29,7 @@ self.addEventListener('notificationclose', (event) => {
   console.log('on close notify')
 })
 
-self.addEventListener('push', function (event) {
-  console.log('Push notification received', event)
-
+self.addEventListener('push', event =>{
   let data = {title: 'New!', content: 'Something was added', openUrl: '/'}
   if (event.data) {
     data = JSON.parse(event.data.text())

@@ -9,11 +9,9 @@ import('vuetify/dist/vuetify.min.css')
 import store from './store/store'
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log('DEVELOPMENT MODE')
   const runtime = require('serviceworker-webpack-plugin/lib/runtime')
   if ('serviceWorker' in navigator) {
-    const registration = runtime.register()
-    console.log(registration)
+    runtime.register()
   }
 }
 
