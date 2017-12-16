@@ -9,7 +9,6 @@
               .detail Describe: {{meeting.describe}}
               .detail Place: {{meeting.place}}
               .detail Date and Time: {{meeting.date }} {{ meeting.time}}
-              .detail Priority: {{meeting.priority}}
         v-card-actions
           v-btn.blue--text(flat='') Edit
           v-btn.orange--text(flat='') Remove

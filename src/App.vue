@@ -18,6 +18,8 @@
     main.blue-grey.lighten-4
       v-container(fluid='')
         router-view
+    v-footer.blue.darken-4(dark='')
+      span.white--text &copy; 2017
   loader.loader(v-else, :size="100", :width="5")
 
 </template>
@@ -42,7 +44,6 @@
       setTimeout(() => {
         this.show = true
       }, 1000)
-      this.$store.dispatch('checkLocalStorage')
     },
     components: {Loader}
   }
@@ -68,6 +69,6 @@ footer
   #app
     margin: 0 20vw
   body
-    background-image: url("../static/img/background.png")
+    background-color: #37474f
 
 </style>

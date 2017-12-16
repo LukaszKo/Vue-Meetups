@@ -1,13 +1,6 @@
 import constans from './constans'
 import MeetingsService from '../../../services/MeetingsService'
 
-export const checkLocalStorage = ({commit, state}) => {
-  let savedMeetings = localStorage.getItem('meetings')
-  if (savedMeetings) {
-    commit(constans.SET_MEETINGS, JSON.parse(savedMeetings))
-  }
-}
-
 export const addMeeting = async ({commit}, payload) => {
   commit(constans.ADD_MEETING, payload)
   try {

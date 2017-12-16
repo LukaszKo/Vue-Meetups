@@ -83,18 +83,20 @@ self.addEventListener('notificationclick', (event) => {
   }
 })
 
-self.addEventListener('push', function (event) {
+self.addEventListener('push', (event) => {
 
   console.log('s')
   console.log('Push notification received', event)
 
-  let data = {title: 'New!', content: 'Something was added'}
+  let data = {title: 'New!', content: 'Something was added', openUrl: '/meetings'}
   if (event.data) {
     data = JSON.parse(event.data.text())
   }
 
   const options = {
-    body: data.content
+    body: data.content,
+    url: data.openUrl
+
   }
 
   event.waitUntil(

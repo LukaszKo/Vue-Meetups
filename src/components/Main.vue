@@ -9,7 +9,7 @@
           v-btn(primary='', dark='', large='', slot="activator") Add Meeting Note
           add-meeting-form(slot="default", @close="dialog = false", @save="onSave")
         v-btn(success='', dark='', large='') Add Work Note
-        v-btn(primary="", dark="", large="", @click="askForNotification") Enable notification1
+        v-btn(primary="", dark="", large="", @click="askForNotification") Enable notification
 
 </template>
 
