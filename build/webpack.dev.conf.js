@@ -7,6 +7,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -30,10 +31,12 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true,
-      serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
-        './service-worker-dev.js'), 'utf-8')}</script>`
+      inject: true
     }),
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin(),
+    // service worker caching
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(__dirname, '../src/sw.js')
+    })
   ]
 })

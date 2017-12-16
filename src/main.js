@@ -4,7 +4,18 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
+
 import('vuetify/dist/vuetify.min.css')
+import store from './store/store'
+
+if (process.env.NODE_ENV !== 'production') {
+  console.log('DEVELOPMENT MODE')
+  const runtime = require('serviceworker-webpack-plugin/lib/runtime')
+  if ('serviceWorker' in navigator) {
+    const registration = runtime.register()
+    console.log(registration)
+  }
+}
 
 Vue.use(Vuetify)
 
@@ -14,6 +25,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
-  components: { App }
+  components: {App}
 })

@@ -1,0 +1,13 @@
+[debug] [2017-12-15T20:29:36.321Z] ----------------------------------------------------------------------
+[debug] [2017-12-15T20:29:36.323Z] Command:       E:\nodejs\node.exe C:\Users\Łukasz\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-12-15T20:29:36.324Z] CLI Version:   3.16.0
+[debug] [2017-12-15T20:29:36.324Z] Platform:      win32
+[debug] [2017-12-15T20:29:36.324Z] Node Version:  v7.9.0
+[debug] [2017-12-15T20:29:36.324Z] Time:          Fri Dec 15 2017 21:29:36 GMT+0100 (Środkowoeuropejski czas stand.)
+[debug] [2017-12-15T20:29:36.324Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-15T20:29:36.336Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-15T20:29:36.336Z] > authorizing via signed-in user
+[debug] [2017-12-15T20:29:36.338Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pwa-app-26ca8  
+  
+ Fri Dec 15 2017 21:29:36 GMT+0100 (Środkowoeuropejski czas stand.)

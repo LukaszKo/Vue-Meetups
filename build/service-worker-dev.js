@@ -7,6 +7,7 @@
 self.addEventListener('install', () => self.skipWaiting());
 
 self.addEventListener('activate', () => {
+  console.log('SW Activated')
   self.clients.matchAll({ type: 'window' }).then(windowClients => {
     for (let windowClient of windowClients) {
       // Force open pages to refresh, so that they have a chance to load the
@@ -15,3 +16,14 @@ self.addEventListener('activate', () => {
     }
   });
 });
+
+self.addEventListener('notificationclick', (event) => {
+  let notification = event.notification
+  let action = event.action
+
+  console.log(notification)
+
+  if (action === 'confirm') {
+    notification.close()
+  }
+})
