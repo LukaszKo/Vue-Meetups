@@ -61,8 +61,6 @@ self.addEventListener('notificationclick', (event) => {
   let notification = event.notification
   let action = event.action
 
-  console.log(notification)
-
   if (action === 'confirm') {
     notification.close()
   } else {
@@ -84,21 +82,14 @@ self.addEventListener('notificationclick', (event) => {
 })
 
 self.addEventListener('push', (event) => {
-
-  console.log('s')
-  console.log('Push notification received', event)
-
   let data = {title: 'New!', content: 'Something was added', openUrl: '/meetings'}
   if (event.data) {
     data = JSON.parse(event.data.text())
   }
-
   const options = {
     body: data.content,
     url: data.openUrl
-
   }
-
   event.waitUntil(
     self.registration.showNotification(data.title, options)
   )
