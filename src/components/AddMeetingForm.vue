@@ -1,7 +1,7 @@
 <template lang="pug">
   v-card
     v-card-title
-      span.headline Add New Meeting Note
+      span.headline Add New Meetup
     v-card-text
       v-container(grid-list-md='')
         v-layout(wrap='')
@@ -14,7 +14,7 @@
           v-flex(xs12='', md4="")
             v-date-picker(v-model='meeting.date')
           v-flex(xs12='', md4="")
-            v-time-picker(v-model="meeting.time")
+            v-time-picker(v-model="meeting.time", format="24hr")
     v-card-actions
       v-spacer
       v-btn.blue--text.darken-1(flat='', @click='$emit("close")') Close

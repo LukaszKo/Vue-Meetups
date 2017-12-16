@@ -12,9 +12,12 @@ export const addMeeting = async ({commit}, payload) => {
 
 export const GetMeetings = async ({commit}) => {
   try {
+    commit(constans.SET_LOADING, true)
     const meetings = await MeetingsService.GetMeetings()
     commit(constans.SET_MEETINGS, meetings)
   } catch (err) {
     console.error(err)
+  } finally {
+    commit(constans.SET_LOADING, false)
   }
 }

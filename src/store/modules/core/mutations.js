@@ -9,5 +9,8 @@ export default {
   },
   [constans.SET_MEETINGS] (state, payload) {
     state.meetings = payload || []
+  },
+  [constans.SET_LOADING] (state, payload) {
+    state.loading = payload
   }
 }

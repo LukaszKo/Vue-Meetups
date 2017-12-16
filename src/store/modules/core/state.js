@@ -1,4 +1,5 @@
 export default {
   meetings: [],
-  works: []
+  works: [],
+  loading: false
 }
