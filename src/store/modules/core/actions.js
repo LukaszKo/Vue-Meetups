@@ -14,7 +14,7 @@ export const GetMeetings = async ({commit}) => {
   try {
     commit(constans.SET_LOADING, true)
     const meetings = await MeetingsService.GetMeetings()
-    commit(constans.SET_MEETINGS, meetings)
+    commit(constans.SET_MEETINGS, meetings.reverse())
   } catch (err) {
     console.error(err)
   } finally {

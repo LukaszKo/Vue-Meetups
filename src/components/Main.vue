@@ -2,10 +2,10 @@
   v-container
     v-layout(row="" wrap="")
       v-flex.text-xs-center.text-md-center
-        v-dialog.hidden-md-and-up(v-model='mobileDialog', persistent='', fullscreen="")
+        v-dialog.hidden-md-and-up(v-model='mobileDialog', fullscreen="")
           v-btn(success='', dark='', large='', slot="activator") Add Meeting Note
           add-meeting-form(slot="default", @close="mobileDialog = false", @save="onSave")
-        v-dialog.hidden-xs-only(v-model='dialog', persistent='', width="50%")
+        v-dialog.hidden-xs-only(v-model='dialog', width="50%")
           v-btn(success='', dark='', large='', slot="activator") Add Meeting Note
           add-meeting-form(slot="default", @close="dialog = false", @save="onSave")
         <!--v-btn(success='', dark='', large='') Add Work Note-->

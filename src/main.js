@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
+import VeeValidate from 'vee-validate'
 
 import('vuetify/dist/vuetify.min.css')
 import store from './store/store'
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 Vue.use(Vuetify)
+Vue.use(VeeValidate)
 
 Vue.config.productionTip = false
 
