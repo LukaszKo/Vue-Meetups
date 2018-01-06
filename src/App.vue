@@ -1,18 +1,23 @@
 <template lang="pug">
   v-app#app(toolbar='', v-if="show", v-scroll="onScroll")
-    <!--v-navigation-drawer.hidden-md-and-up(temporary='', v-model='drawer', light='', overflow='', absolute='', v-touch="touch")-->
-    <!--v-list-->
-    <!--v-list-tile(v-for='item in items', :key='item.title', :to="item.link")-->
-    <!--v-list-tile-action-->
-    <!--v-icon {{ item.icon }}-->
-    <!--v-list-tile-content-->
-    <!--v-list-tile-title {{ item.title }}-->
-    v-toolbar.blue.darken-4(dark='', v-touch="touch")
-      <!--v-toolbar-side-icon.hidden-md-and-up(@click.stop='drawer = !drawer')-->
+    v-navigation-drawer.hidden-md-and-up(temporary='', v-model='drawer', light='', overflow='', absolute='')
+      v-toolbar.blue.darken-4(dark='')
+        v-toolbar-title Menu
+      v-divider
+      v-list
+        v-list-tile(v-for='item in items', :key='item.title', :to="item.link", :exact="true")
+          v-list-tile-action
+            v-icon {{item.icon}}
+          v-list-tile-content
+            v-list-tile-title {{ item.title }}
+      v-btn.hidden-md-and-up.theme--dark.red(@click="askForNotification") Enable notification
+    v-toolbar.blue.darken-4(dark='')
+      v-toolbar-side-icon.hidden-md-and-up(@click.stop='drawer = !drawer')
       v-toolbar-title Meetups Manager
       v-spacer.hidden-xs-only
+      v-btn.hidden-xs-only.theme--dark.red(@click="askForNotification") Enable notification
       v-toolbar-items.hidden-xs-only
-        v-btn(flat="" v-for='item in items', :key='item.title', :to="item.link") {{item.title}}
+        v-btn(flat="" v-for='item in items', :key='item.title', :to="item.link", :exact="true") {{item.title}}
     main.blue-grey.lighten-4
       v-container(fluid='')
         transition(name="slide-fade")
@@ -25,60 +30,47 @@
           v-icon keyboard_arrow_up
     v-footer.blue.darken-4(dark='')
       span.white--text &copy; 2017
-  loader.loader(v-else, :size="100", :width="5")
 
 </template>
 
 <script>
   import Loader from '@/components/commons/Loader'
+  import NotifyManager from './subscriptions/Manager'
 
   export default {
-    name: 'app',
+    name: 'App',
+    components: {Loader},
     data () {
       return {
         drawer: null,
         items: [
-          {title: 'Meetups', link: '/meetings'},
-          {title: 'Home', link: '/'}
+          {title: 'Meetups', link: '/', icon: 'event'},
+          {title: 'Add meetup', link: '/add', icon: 'home'}
         ],
         showFloatButton: false,
         right: null,
         show: false,
-        swipeDirection: 'None',
-        touch: {
-          left: () => this.swipe('Left'),
-          right: () => this.swipe('Right')
-        }
+        swipeDirection: 'None'
       }
+    },
+    mounted () {
+      setTimeout(() => {
+        this.show = true
+      }, 100)
     },
     methods: {
       scrollUp () {
         document.body.scrollTop = 0
         document.documentElement.scrollTop = 0
       },
-      onScroll (e) {
+      onScroll () {
         const offSet = window.pageYOffset || document.documentElement.scrollTop
         offSet > 250 ? this.showFloatButton = true : this.showFloatButton = false
       },
-      swipe (move) {
-        console.log(move)
-        this.swipeDirection = move
-        switch (move) {
-          case 'Left':
-            this.$router.push('meetings')
-            break
-          case 'Right':
-            this.$router.push('/')
-            break
-        }
+      askForNotification () {
+        NotifyManager.askForNotification()
       }
-    },
-    mounted () {
-      setTimeout(() => {
-        this.show = true
-      }, 500)
-    },
-    components: {Loader}
+    }
   }
 </script>
 

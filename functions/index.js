@@ -33,7 +33,7 @@ exports.storeMeeting = functions.https.onRequest((request, response) => {
           webpush.sendNotification(pushConfig, JSON.stringify({
             title: 'New Meeting',
             content: 'new meeting added to calendar',
-            openUrl: '/meetings'
+            openUrl: '/'
           }))
             .catch(err => {
               console.log(err)

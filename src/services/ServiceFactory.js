@@ -30,5 +30,13 @@ export default {
     } catch (err) {
       console.error(err)
     }
+  },
+  ProccessPatchRequest: async (url, body) => {
+    try {
+      let response = await axios.patch(url, body)
+      return response.data
+    } catch (err) {
+      console.error(err)
+    }
   }
 }

@@ -1,5 +1,6 @@
 export default {
   meetings: [],
   works: [],
-  loading: false
+  loading: false,
+  meetup: {}
 }

@@ -2,26 +2,36 @@
   v-layout(row="" wrap="")
     v-flex.text-xs-center.text-md-center
       loader.loader(v-if="loading && !meetings.length", :size="100", :width="5")
-      meeting(:meeting="meeting" v-for="meeting in meetings", :key="meeting.title")
+      meeting(v-if="meetings.length", :meeting="meeting" v-for="meeting in meetings", :key="meeting.title")
 
 </template>
 
 <script>
   import Meeting from './Meeting.vue'
   import Loader from 'components/commons/Loader'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     components: {Meeting, Loader},
     computed: {
+      ...mapGetters([
+        'getMeetings',
+        'getLoading'
+      ]),
       meetings () {
-        return this.$store.getters.meetings
+        return this.getMeetings
       },
       loading () {
-        return this.$store.getters.loading
+        return this.getLoading
       }
     },
     mounted () {
-      this.$store.dispatch('GetMeetings')
+      this.getAllMeetings()
+    },
+    methods: {
+      ...mapActions([
+        'getAllMeetings'
+      ])
     }
   }
 </script>

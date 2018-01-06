@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Work from '@/components/Work'
-import Main from '@/components/Main'
 import Meetings from '@/components/Meetings'
+import EditMeetup from '@/components/EditMeetup'
+import AddMeetup from '@/components/AddMeetup'
 
 Vue.use(Router)
 
@@ -11,15 +12,19 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: Main
-    },
-    {
-      path: '/meetings',
-      component: Meetings
+      component: Meetings,
     },
     {
       path: '/work',
       component: Work
+    },
+    {
+      path: '/add',
+      component: AddMeetup
+    },
+    {
+      path: '/edit',
+      component: EditMeetup
     }
   ]
 })

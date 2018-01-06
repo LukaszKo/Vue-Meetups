@@ -6,7 +6,16 @@
 
 <script>
   export default {
-    props: ['size', 'width']
+    props: {
+      size: {
+        type: Number,
+        default: 100
+      },
+      width: {
+        type: Number,
+        default: 5
+      }
+    }
   }
 </script>
 <style>

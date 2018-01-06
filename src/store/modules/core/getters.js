@@ -1,5 +1,6 @@
 export default {
-  meetings: state => state.meetings,
+  getMeetings: state => state.meetings,
   works: state => state.works,
-  loading: state => state.loading
+  getLoading: state => state.loading,
+  getMeetup: state => state.meetup
 }
