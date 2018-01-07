@@ -1,7 +1,7 @@
 <template lang="pug">
   v-layout(row="" wrap="")
     v-flex.text-xs-center.text-md-center
-      v-progress-circular.primary--text(indeterminate='', v-bind:size='size', v-bind:width='width')
+      v-progress-circular(indeterminate='', :size='size', :width='width', :color="color")
 </template>
 
 <script>
@@ -14,6 +14,10 @@
       width: {
         type: Number,
         default: 5
+      },
+      color: {
+        type: String,
+        default: 'primary'
       }
     }
   }

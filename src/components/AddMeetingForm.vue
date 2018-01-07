@@ -12,6 +12,12 @@
               v-text-field(label='describe', v-model="describe", multi-line, :error-messages="errors.collect('describe')", v-validate="'required|max:100'", data-vv-name="describe", :counter="100")
             v-flex(xs12='', sm12='', md12='')
               v-text-field(label='place', v-model="place", persistent-hint='', required, :error-messages="errors.collect('place')", v-validate="'required'", data-vv-name="place")
+            v-flex(xs12='', sm12='', md12='')
+              v-btn.ma-0.primary(@click='onPickFile', :disabled="editMode") Upload Image
+              input(type='file', style='display: none', ref='fileInput', accept='image/*', @change='onFilePicked')
+              div.mt-2.red--text {{fileErrorMsg}}
+            v-flex(v-if="image || editMode", xs12='', sm12='', md12='')
+              img(:src="imageUrl" height="150")
             v-flex(xs12='', md4="", lg6="")
               v-menu(
               lazy="",
@@ -33,7 +39,7 @@
       v-card-actions(v-if="!editMode")
         v-spacer
         v-btn.blue--text.darken-1(flat='', @click='clear') Clear
-        v-btn.blue--text.darken-1(flat='', @click='submit') Add
+        v-btn.blue--text.darken-1(flat='', @click='submit', :loading="getLoading") Add
       v-card-actions(v-else)
         v-spacer
         v-btn.blue--text.darken-1(flat='', @click='back') Back
@@ -69,7 +75,10 @@
         describe: '',
         place: '',
         dateMenu: false,
-        timeMenu: false
+        timeMenu: false,
+        imageUrl: '',
+        image: null,
+        fileErrorMsg: ''
       }
     },
     computed: {
@@ -82,7 +91,8 @@
           describe: this.describe,
           place: this.place,
           date: this.date,
-          time: this.time
+          time: this.time,
+          image: this.image
         }
       }
     },
@@ -93,6 +103,7 @@
           this[key] = this.meetup[key]
         })
       }
+      if (this.editMode) this.image = this.imageUrl
     },
     methods: {
       ...mapActions([
@@ -101,7 +112,8 @@
       ]),
       async submit () {
         const validate = await this.$validator.validateAll()
-        if (validate) {
+        if (!this.image && !this.editMode) this.fileErrorMsg = 'The image file is required'
+        if (validate && this.image) {
           this.editMode ? await this.editMeeting(this.collectMeetup) : await this.addMeeting(this.collectMeetup)
           this.$router.push('/')
         }
@@ -112,15 +124,32 @@
         this.place = ''
         this.date = null
         this.time = null
+        this.imageUrl = ''
+        this.image = null
         setTimeout(() => {
           this.errors.clear()
+          this.fileErrorMsg = ''
         })
       },
       back () {
         this.$router.push('/')
       },
-      saveMeetup () {
-
+      onPickFile () {
+        this.$refs.fileInput.click()
+      },
+      onFilePicked (event) {
+        const files = event.target.files
+        let filename = files[0].name
+        if (filename.lastIndexOf('.') <= 0) {
+          return alert('Please add a valid file!')
+        }
+        const fileReader = new FileReader()
+        fileReader.addEventListener('load', () => {
+          this.imageUrl = fileReader.result
+          this.fileErrorMsg = ''
+        })
+        fileReader.readAsDataURL(files[0])
+        this.image = files[0]
       }
     }
   }

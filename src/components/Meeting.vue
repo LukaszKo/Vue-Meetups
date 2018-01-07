@@ -4,10 +4,8 @@
       v-card
         v-card-title()
           h2.red--text {{meeting.title}}
-        v-card-media(
-        src="/static/img/view.png"
-        height="200px"
-        )
+        v-card-media(v-if="!loadingImage", :src="meeting.imageUrl", height="300px")
+        loader(v-else="loadingImage", :size="295", :width="1", color="green")
         v-card-title(primaryTitle="")
           .details
             .div
@@ -30,8 +28,11 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import {mapMutations} from 'vuex'
+  import Loader from 'components/commons/Loader'
+
   export default {
+    components: {Loader},
     props: {
       meeting: {
         type: Object,
@@ -39,6 +40,17 @@
           return {}
         }
       }
+    },
+    data () {
+      return {
+        loadingImage: false
+      }
+    },
+    mounted () {
+      this.loadingImage = true
+      setTimeout(() => {
+        this.loadingImage = false
+      }, 600)
     },
     methods: {
       ...mapMutations([
