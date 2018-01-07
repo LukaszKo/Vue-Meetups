@@ -18,8 +18,9 @@
       v-btn.hidden-xs-only.theme--dark.red(@click="askForNotification") Enable notification
       v-toolbar-items.hidden-xs-only
         v-btn(flat="" v-for='item in items', :key='item.title', :to="item.link", :exact="true") {{item.title}}
+          v-icon(right="") {{item.icon}}
     main.blue-grey.lighten-4
-      v-container(fluid='')
+      v-container
         transition(name="slide-fade")
           router-view
       v-fab-transition
@@ -45,7 +46,7 @@
         drawer: null,
         items: [
           {title: 'Meetups', link: '/', icon: 'event'},
-          {title: 'Add meetup', link: '/add', icon: 'home'}
+          {title: 'Add meetup', link: '/add', icon: 'add'}
         ],
         showFloatButton: false,
         right: null,

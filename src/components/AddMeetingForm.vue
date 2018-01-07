@@ -1,6 +1,6 @@
 <template lang="pug">
   v-layout(row="" wrap="")
-    v-card
+    v-card.mb-4
       v-card-title(:primary-title="true")
         span.headline {{formTitle}}
       v-card-text

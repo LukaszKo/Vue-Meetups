@@ -8,7 +8,7 @@ var config = {
   databaseURL: "https://pwa-app-26ca8.firebaseio.com/",
   projectId: 'pwa-app-26ca8',
   storageBucket: "gs://pwa-app-26ca8.appspot.com",
-};
+}
 
 firebase.initializeApp(config)
 
@@ -43,7 +43,7 @@ export const getAllMeetings = async ({commit}) => {
     const data = await firebase.database().ref('meetings').once('value')
     let meetings = []
     const obj = data.val()
-    Object.keys(obj).map(key => {
+    obj && Object.keys(obj).map(key => {
       meetings.push({
         id: key,
         title: obj[key].title,
@@ -51,7 +51,7 @@ export const getAllMeetings = async ({commit}) => {
         describe: obj[key].describe,
         date: obj[key].date,
         time: obj[key].time,
-        imageUrl:  obj[key].imageUrl
+        imageUrl: obj[key].imageUrl
       })
     })
     commit(constans.SET_MEETINGS, meetings)
@@ -77,6 +77,18 @@ export const editMeeting = async ({commit, getters}, payload) => {
     await firebase.database().ref('meetings').child(editMeetup.id).update(updateObj)
   } catch (err) {
     console.error(err)
+  } finally {
+    commit(constans.SET_LOADING, false)
+  }
+}
+
+export const removeMeeting = async ({commit, dispatch}, meetupId) => {
+  try {
+    commit(constans.SET_LOADING, true)
+    await firebase.database().ref('meetings').child(meetupId).remove()
+    await dispatch('getAllMeetings')
+  } catch (err) {
+
   } finally {
     commit(constans.SET_LOADING, false)
   }

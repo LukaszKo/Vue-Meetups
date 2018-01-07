@@ -1,7 +1,5 @@
 <template lang="pug">
-  v-container
-    v-layout(row="" wrap="")
-      add-meeting-form(:meetup="getMeetup", form-title="Edit meetup", :editMode="true")
+  add-meeting-form(:meetup="getMeetup", form-title="Edit meetup", :editMode="true")
 
 </template>
 

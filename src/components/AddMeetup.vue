@@ -1,7 +1,5 @@
 <template lang="pug">
-  v-container
-    v-layout(row="" wrap="")
-      add-meeting-form()
+  add-meeting-form()
 
 </template>
 

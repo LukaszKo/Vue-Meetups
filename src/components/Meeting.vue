@@ -23,12 +23,21 @@
         v-divider
         v-card-actions
           v-btn.green--text(flat='', @click="editMeetup") Edit
-          v-btn.orange--text(flat='') Remove
+          v-btn.orange--text(flat='', @click="removeDialog = true") Remove
+          v-dialog(v-model="removeDialog", max-width="300")
+            v-card
+              v-card-title.headline Remove meetup
+              v-card-text You want to remove this meetup?
+              v-divider
+              v-card-actions
+                v-spacer
+                v-btn(flat="", color="primary", @click="removeDialog = false") Back
+                v-btn(flat="", color="orange", @click="removeMeetup", :loading="getLoading") Confirm
 
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
+  import {mapMutations, mapActions, mapGetters} from 'vuex'
   import Loader from 'components/commons/Loader'
 
   export default {
@@ -43,8 +52,14 @@
     },
     data () {
       return {
-        loadingImage: false
+        loadingImage: false,
+        removeDialog: false
       }
+    },
+    computed: {
+      ...mapGetters([
+        'getLoading'
+      ])
     },
     mounted () {
       this.loadingImage = true
@@ -53,12 +68,19 @@
       }, 600)
     },
     methods: {
+      ...mapActions([
+        'removeMeeting'
+      ]),
       ...mapMutations([
         'SET_MEETUP'
       ]),
       editMeetup () {
         this.SET_MEETUP(this.meeting)
         this.$router.push('/edit')
+      },
+      async removeMeetup () {
+        await this.removeMeeting(this.meeting.id)
+        this.removeDialog = false
       }
     }
   }
