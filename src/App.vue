@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app#app(toolbar='', v-if="show", v-scroll="onScroll")
     v-navigation-drawer.hidden-md-and-up(temporary='', v-model='drawer', light='', overflow='', absolute='')
-      v-toolbar.blue.darken-4(dark='')
+      v-toolbar.blue-grey.lighten-1(dark='')
         v-toolbar-title Menu
       v-divider
       v-list
@@ -10,12 +10,12 @@
             v-icon {{item.icon}}
           v-list-tile-content
             v-list-tile-title {{ item.title }}
-      v-btn.hidden-md-and-up.theme--dark.red(@click="askForNotification") Enable notification
-    v-toolbar.blue.darken-4(dark='')
+      v-btn.hidden-md-and-up.blue-grey.darken-3(@click="askForNotification", dark) Enable notification
+    v-toolbar.blue-grey.lighten-1(dark='')
       v-toolbar-side-icon.hidden-md-and-up(@click.stop='drawer = !drawer')
       v-toolbar-title Meetups Manager
       v-spacer.hidden-xs-only
-      v-btn.hidden-xs-only.theme--dark.red(@click="askForNotification") Enable notification
+      v-btn.hidden-xs-only.blue-grey.darken-3(@click="askForNotification") Enable notification
       v-toolbar-items.hidden-xs-only
         v-btn(flat="" v-for='item in items', :key='item.title', :to="item.link", :exact="true") {{item.title}}
           v-icon(right="") {{item.icon}}
@@ -24,12 +24,12 @@
         transition(name="slide-fade")
           router-view
       v-fab-transition
-        v-btn.hidden-xs-only.theme--dark.red(v-if="showFloatButton", style="margin-right: 20vw", fixed='', bottom='', right='', fab='', @click="scrollUp")
+        v-btn.hidden-xs-only.theme--dark.black(v-if="showFloatButton", style="margin-right: 20vw", fixed='', bottom='', right='', fab='', @click="scrollUp")
           v-icon keyboard_arrow_up
       v-fab-transition
-        v-btn.hidden-md-and-up.theme--dark.red(v-if="showFloatButton", fixed='', bottom='', right='', fab='', @click="scrollUp")
+        v-btn.hidden-md-and-up.theme--dark.black(v-if="showFloatButton", fixed='', bottom='', right='', fab='', @click="scrollUp")
           v-icon keyboard_arrow_up
-    v-footer.blue.darken-4(dark='')
+    v-footer.blue-grey.lighten-1(dark='')
       span.white--text &copy; 2017
 
 </template>
@@ -50,8 +50,7 @@
         ],
         showFloatButton: false,
         right: null,
-        show: false,
-        swipeDirection: 'None'
+        show: false
       }
     },
     mounted () {

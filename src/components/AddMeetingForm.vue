@@ -38,12 +38,12 @@
                 v-time-picker(v-model="time", format="24hr", autosave="")
       v-card-actions(v-if="!editMode")
         v-spacer
-        v-btn.blue--text.darken-1(flat='', @click='clear') Clear
-        v-btn.blue--text.darken-1(flat='', @click='submit', :loading="getLoading") Add
+        v-btn.orange--text.darken-1(flat='', @click='clear') Clear
+        v-btn.green--text.darken-1(flat='', @click='submit', :loading="getLoading") Add
       v-card-actions(v-else)
         v-spacer
         v-btn.blue--text.darken-1(flat='', @click='back') Back
-        v-btn.blue--text.darken-1(flat='', @click='submit', :loading="getLoading") Save
+        v-btn.green--text.darken-1(flat='', @click='submit', :loading="getLoading") Save
 </template>
 
 <script>

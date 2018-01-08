@@ -1,25 +1,25 @@
 <template lang="pug">
   v-layout.meeting
     v-flex(xs12='', md6='', sm6='', lg8="", offset-md2='')
-      v-card
+      v-card.grey.lighten-3(light, flat)
         v-card-title()
-          h2.red--text {{meeting.title}}
+          h2.blue-grey--text.text--darken-1 {{meeting.title.toUpperCase()}}
         v-card-media(v-if="!loadingImage", :src="meeting.imageUrl", height="300px")
         loader(v-else="loadingImage", :size="295", :width="1", color="green")
         v-card-title(primaryTitle="")
           .details
             .div
-              span Describe: &nbsp
-              span.blue--text {{meeting.describe}}
+              span.grey--text Describe: &nbsp
+              span {{meeting.describe}}
             .div
-              span Place: &nbsp
-              span.blue--text {{meeting.place}}
+              span.grey--text Place: &nbsp
+              span {{meeting.place}}
             .div
-              span Date: &nbsp
-              span.blue--text {{meeting.date}}
+              span.grey--text Date: &nbsp
+              span {{meeting.date}}
             .div
-              span Time: &nbsp
-              span.blue--text {{meeting.time}}
+              span.grey--text Time: &nbsp
+              span {{meeting.time}}
         v-divider
         v-card-actions
           v-btn.green--text(flat='', @click="editMeetup") Edit
@@ -79,7 +79,7 @@
         this.$router.push('/edit')
       },
       async removeMeetup () {
-        await this.removeMeeting(this.meeting.id)
+        await this.removeMeeting({id: this.meeting['.key'], ext: this.meeting.imageExt})
         this.removeDialog = false
       }
     }

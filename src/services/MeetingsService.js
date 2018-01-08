@@ -5,7 +5,7 @@ export default {
   AddNewMeeting (body) {
     return ServiceFactory.ProccessPostRequest(`${urls.restApi}/storeMeeting`, body)
   },
-  GetMeetings () {
-    return ServiceFactory.ProccessGetRequest(`${urls.restApi}/meetings`)
+  RemoveMeeting () {
+    return ServiceFactory.ProccessDeleteRequest(`${urls.restApi}/removeMeeting`, body)
   }
 }
