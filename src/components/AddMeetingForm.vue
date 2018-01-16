@@ -7,13 +7,13 @@
         v-container(grid-list-md='')
           v-layout(wrap='')
             v-flex(xs12='', sm12='', md12='')
-              v-text-field(label='title', required='', v-model="title", :error-messages="errors.collect('title')", v-validate="'required'", data-vv-name="title")
+              v-text-field(label='title', required='', v-model="title", :error-messages="errors.collect('title')", v-validate="'required'", data-vv-name="title", :disabled="getLoading")
             v-flex(xs12='', sm12='', md12='')
-              v-text-field(label='describe', v-model="describe", multi-line, :error-messages="errors.collect('describe')", v-validate="'required|max:100'", data-vv-name="describe", :counter="100")
+              v-text-field(label='describe', v-model="describe", multi-line, :error-messages="errors.collect('describe')", v-validate="'required|max:100'", data-vv-name="describe", :counter="100", :disabled="getLoading")
             v-flex(xs12='', sm12='', md12='')
-              v-text-field(label='place', v-model="place", persistent-hint='', required, :error-messages="errors.collect('place')", v-validate="'required'", data-vv-name="place")
+              v-text-field(label='place', v-model="place", persistent-hint='', required, :error-messages="errors.collect('place')", v-validate="'required'", data-vv-name="place", :disabled="getLoading")
             v-flex(xs12='', sm12='', md12='')
-              v-btn.ma-0.primary(@click='onPickFile', :disabled="editMode") Upload Image
+              v-btn.ma-0.primary(@click='onPickFile', :disabled="editMode || getLoading") Upload Image
               input(type='file', style='display: none', ref='fileInput', accept='image/*', @change='onFilePicked')
               div.mt-2.red--text {{fileErrorMsg}}
             v-flex(v-if="image || editMode", xs12='', sm12='', md12='')
@@ -25,7 +25,7 @@
               v-model="dateMenu",
               transition="scale-transition",
               offset-y="")
-                v-text-field(slot="activator", label="Date picker in menu", v-model="date", readonly="", :error-messages="errors.collect('date')", v-validate="'required'", data-vv-name="date")
+                v-text-field(slot="activator", label="Date picker in menu", v-model="date", readonly="", :error-messages="errors.collect('date')", v-validate="'required'", data-vv-name="date", :disabled="getLoading")
                 v-date-picker(v-model='date', autosave="")
             v-flex(xs12='', md4="", lg6="")
               v-menu(
@@ -34,7 +34,7 @@
               v-model="timeMenu",
               transition="scale-transition",
               offset-y="")
-                v-text-field(slot="activator", label="Time picker in menu", v-model="time", readonly="", :error-messages="errors.collect('time')", v-validate="'required'", data-vv-name="time")
+                v-text-field(slot="activator", label="Time picker in menu", v-model="time", readonly="", :error-messages="errors.collect('time')", v-validate="'required'", data-vv-name="time", :disabled="getLoading")
                 v-time-picker(v-model="time", format="24hr", autosave="")
       v-card-actions(v-if="!editMode")
         v-spacer

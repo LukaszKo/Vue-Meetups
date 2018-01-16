@@ -1,7 +1,6 @@
 <template lang="pug">
   v-layout(row="" wrap="")
     v-flex.text-xs-center.text-md-center
-      loader.loader(v-if="!newMeetups.length", :size="200", :width="2")
       meeting(v-if="newMeetups.length", :meeting="meeting" v-for="meeting of newMeetups", :key="meeting.title")
       v-flex(xs12='', sm12='', md12='', lg6="", offset-md3='')
         v-alert(v-model="!newMeetups.length", color="info", outline="", icon="info") There is no meeting created
