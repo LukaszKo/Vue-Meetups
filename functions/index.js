@@ -3,20 +3,19 @@ const admin = require('firebase-admin')
 const cors = require('cors')({orgin: true})
 const serviceAccount = require('./firebaseKey.json')
 const webpush = require('web-push')
-import keys from '../src/subscriptions/keys'
-
+const firebaseConfig = require('./firebaseConfig')
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://pwa-app-26ca8.firebaseio.com/'
+  databaseURL: firebaseConfig.databaseURL
 })
 
 exports.storeMeeting = functions.https.onRequest((request, response) => {
   cors(request, response, () => {
     if (request.body.success) {
-      webpush.setVapidDetails('mailto: youemail@emai.com', keys.vapidPublicKey, keys.vapidPrivateKey)
+      webpush.setVapidDetails('mailto: youemail@emai.com', firebaseConfig.vapidPublicKey, firebaseConfig.vapidPrivateKey)
       admin.database().ref('subscriptions').once('value')
         .then(subscriptions => {
           subscriptions.forEach(sub => {
@@ -42,7 +41,7 @@ exports.storeMeeting = functions.https.onRequest((request, response) => {
 exports.removeMeeting = functions.https.onRequest((request, response) => {
   cors(request, response, () => {
     if (request.body.success) {
-      webpush.setVapidDetails('mailto: youemail@emai.com', keys.vapidPublicKey, keys.vapidPrivateKey)
+      webpush.setVapidDetails('mailto: youemail@emai.com', firebaseConfig.vapidPublicKey, firebaseConfig.vapidPrivateKey)
       admin.database().ref('subscriptions').once('value')
         .then(subscriptions => {
           subscriptions.forEach(sub => {
