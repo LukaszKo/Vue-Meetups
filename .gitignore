@@ -9,6 +9,7 @@ test/unit/coverage
 firebase.json
 src/database/configUrls.js
 src/firebase/firebase.js
+src/subscriptions/keys.js
 functions/node_modules/
 functions/firebaseKey.json
 functions/firebaseConfig.json
