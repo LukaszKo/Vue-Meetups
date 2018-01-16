@@ -57,32 +57,9 @@
   })
 })()
 
-self.addEventListener('notificationclick', (event) => {
-  let notification = event.notification
-  let action = event.action
-
-  if (action === 'confirm') {
-    notification.close()
-  } else {
-    console.log(action)
-    event.waitUntil(
-      clients.matchAll()
-        .then(clis => {
-          const client = clis.find(c => c.visibilityState === 'visible')
-          if (client) {
-            client.navigate('http://localhost:8080')
-            client.focus()
-          } else {
-            clients.openWindow('http://localhost:8080')
-          }
-          notification.close()
-        })
-    )
-  }
-})
 
 self.addEventListener('push', (event) => {
-  let data = {title: 'New!', content: 'Something was added', openUrl: '/meetings'}
+  let data = {title: 'New meetup!', content: 'Meetup was added to calendar', openUrl: '/'}
   if (event.data) {
     data = JSON.parse(event.data.text())
   }

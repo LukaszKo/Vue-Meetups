@@ -30,7 +30,7 @@ self.addEventListener('notificationclose', (event) => {
 })
 
 self.addEventListener('push', event =>{
-  let data = {title: 'New!', content: 'Something was added', openUrl: '/'}
+  let data = {title: 'New meetup!', content: 'Meetup was added to calendar', openUrl: '/'}
   if (event.data) {
     data = JSON.parse(event.data.text())
   }
