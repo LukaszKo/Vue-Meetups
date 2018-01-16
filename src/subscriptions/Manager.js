@@ -49,7 +49,7 @@ export default {
       .then(res => {
         if (res && res.status === 200) {
           const options = {
-            body: 'Dobra robota ziomeczku',
+            body: 'You accept notifications',
             tag: 'confirm-notify',
             renotify: true,
             actions: [

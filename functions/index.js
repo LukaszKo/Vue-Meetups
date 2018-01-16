@@ -3,6 +3,7 @@ const admin = require('firebase-admin')
 const cors = require('cors')({orgin: true})
 const serviceAccount = require('./firebaseKey.json')
 const webpush = require('web-push')
+import keys from '../src/subscriptions/keys'
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -15,7 +16,7 @@ admin.initializeApp({
 exports.storeMeeting = functions.https.onRequest((request, response) => {
   cors(request, response, () => {
     if (request.body.success) {
-      webpush.setVapidDetails('mailto: lukaszkochajewski@gmail.com', 'BFRKDS3jmAA8Qp_SQEiKMPGK7E_Kdnd_6N_x-kkeK-I7EK3V05Yro-0V1_JxBixqpXokY3VZ6PfQtpRQOoAS5-4', 'XTrOYVjN706SVI2phLvnu_2YkPGIHchrSIEHmsZbq44')
+      webpush.setVapidDetails('mailto: youemail@emai.com', keys.vapidPublicKey, keys.vapidPrivateKey)
       admin.database().ref('subscriptions').once('value')
         .then(subscriptions => {
           subscriptions.forEach(sub => {
@@ -41,7 +42,7 @@ exports.storeMeeting = functions.https.onRequest((request, response) => {
 exports.removeMeeting = functions.https.onRequest((request, response) => {
   cors(request, response, () => {
     if (request.body.success) {
-      webpush.setVapidDetails('mailto: lukaszkochajewski@gmail.com', 'BFRKDS3jmAA8Qp_SQEiKMPGK7E_Kdnd_6N_x-kkeK-I7EK3V05Yro-0V1_JxBixqpXokY3VZ6PfQtpRQOoAS5-4', 'XTrOYVjN706SVI2phLvnu_2YkPGIHchrSIEHmsZbq44')
+      webpush.setVapidDetails('mailto: youemail@emai.com', keys.vapidPublicKey, keys.vapidPrivateKey)
       admin.database().ref('subscriptions').once('value')
         .then(subscriptions => {
           subscriptions.forEach(sub => {
