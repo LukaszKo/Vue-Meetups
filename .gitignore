@@ -7,8 +7,8 @@ yarn-error.log*
 test/unit/coverage
 .firebaserc
 firebase.json
-src/database/
-src/firebase/
+src/database/configUrls.js
+src/firebase/firebase.js
 src/subscriptions/keys.js
 functions/node_modules/
 functions/firebaseKey.json
