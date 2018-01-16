@@ -14,9 +14,9 @@
     v-toolbar.blue-grey.lighten-1(dark='')
       v-toolbar-side-icon.hidden-md-and-up(@click.stop='drawer = !drawer')
       v-toolbar-title Meetups Manager
-      v-spacer.hidden-xs-only
-      v-btn.hidden-xs-only.blue-grey.darken-3(@click="askForNotification") Enable notification
-      v-toolbar-items.hidden-xs-only
+      v-spacer.hidden-sm-and-down
+      v-btn.hidden-sm-and-down.blue-grey.darken-3(@click="askForNotification") Enable notification
+      v-toolbar-items.hidden-sm-and-down
         v-btn(flat="" v-for='item in items', :key='item.title', :to="item.link", :exact="true") {{item.title}}
           v-icon(right="") {{item.icon}}
     main.blue-grey.lighten-4
@@ -56,7 +56,7 @@
     mounted () {
       setTimeout(() => {
         this.show = true
-      }, 100)
+      }, 200)
     },
     methods: {
       scrollUp () {

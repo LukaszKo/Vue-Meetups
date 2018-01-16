@@ -1,6 +1,6 @@
 <template lang="pug">
   v-layout.meeting
-    v-flex(xs12='', md6='', sm6='', lg8="", offset-md2='')
+    v-flex(xs12='', md10='', sm10='', lg8, offset-md1, offset-lg2, offset-sm1)
       v-card.grey.lighten-3(light, flat)
         v-card-title()
           h2.blue-grey--text.text--darken-1 {{meeting.title.toUpperCase()}}
@@ -79,7 +79,7 @@
         this.$router.push('/edit')
       },
       async removeMeetup () {
-        await this.removeMeeting({id: this.meeting['.key'], ext: this.meeting.imageExt})
+        await this.removeMeeting({id: this.meeting['.key'], ext: this.meeting.imageExt, title: this.meeting.title})
         this.removeDialog = false
       }
     }
