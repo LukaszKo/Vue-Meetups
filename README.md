@@ -1,3 +1,6 @@
+You need to add conifg files with whole firebase configuration (database and storage)
+And also You will need to generate vapid keys for push notification / subscriptions
+
 # pwa-app
 
 > A Vue.js project
