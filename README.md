@@ -1,6 +1,14 @@
 You need to add conifg files with whole firebase configuration (database and storage)
 And also You will need to generate vapid keys for push notification / subscriptions
 
+Few photos of this app
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/pwa-app-26ca8.appspot.com/o/github%2FmeetupImg.png?alt=media&token=5ec11bcd-1aff-4d9a-a06c-a6c1a5b2f45a)
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/pwa-app-26ca8.appspot.com/o/github%2FmeetupForm.png?alt=media&token=60865339-6e12-4cd4-b3be-9f6ddf8e6352)
+
+![alt text](https://firebasestorage.googleapis.com/v0/b/pwa-app-26ca8.appspot.com/o/github%2FmeetupMenu.png?alt=media&token=eac81f1b-2c87-41c3-9012-970e4c689290)
+
 # pwa-app
 
 > A Vue.js project
