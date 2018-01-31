@@ -7,9 +7,6 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
-const workboxPlugin = require('workbox-webpack-plugin')
-
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
@@ -35,18 +32,5 @@ module.exports = merge(baseWebpackConfig, {
       inject: true
     }),
     new FriendlyErrorsPlugin()
-    // service worker caching
-    // new workboxPlugin({
-    //   globDirectory: path.resolve(__dirname, '../dist/'),
-    //   globPatterns: ['**/*.{html,js}'],
-    //   globIgnores: ['service-worker.js'],
-    //   swSrc: path.resolve(__dirname, '../src/sw.js'),
-    //   swDest: path.join(__dirname, '../src/service-worker.js'),
-    //   clientsClaim: true,
-    //   skipWaiting: true,
-    // }),
-    // new ServiceWorkerWebpackPlugin({
-    //   entry: path.join(__dirname, '../src/service-worker.js')
-    // })
   ]
 })

@@ -61,12 +61,6 @@
         'getLoading'
       ])
     },
-    mounted () {
-      // this.loadingImage = true
-      // setTimeout(() => {
-      //   this.loadingImage = false
-      // }, 600)
-    },
     methods: {
       ...mapActions([
         'removeMeeting'
