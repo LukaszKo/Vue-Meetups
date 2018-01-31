@@ -4,8 +4,8 @@
       v-card.grey.lighten-3(light, flat)
         v-card-title()
           h2.blue-grey--text.text--darken-1 {{meeting.title.toUpperCase()}}
-        v-card-media(v-if="!loadingImage", :src="meeting.imageUrl", height="300px")
-        loader(v-else="loadingImage", :size="295", :width="1", color="green")
+        v-card-media(:src="meeting.imageUrl", height="300px")
+        <!--loader(v-else="loadingImage", :size="295", :width="1", color="green")-->
         v-card-title(primaryTitle="")
           .details
             .div
@@ -62,10 +62,10 @@
       ])
     },
     mounted () {
-      this.loadingImage = true
-      setTimeout(() => {
-        this.loadingImage = false
-      }, 600)
+      // this.loadingImage = true
+      // setTimeout(() => {
+      //   this.loadingImage = false
+      // }, 600)
     },
     methods: {
       ...mapActions([

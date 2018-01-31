@@ -1,6 +1,15 @@
-self.addEventListener('activate', () => {
-  console.log('SW Activated DEV')
+importScripts('workbox-sw.prod.v2.1.2.js');
+
+// Note: Ignore the error that Glitch raises about WorkboxSW being undefined.
+const workbox = new WorkboxSW({
+  skipWaiting: true,
+  clientsClaim: true
 })
+
+workbox.router.registerRoute(
+  new RegExp('^https://firebasestorage.googleapis.com'),
+  workbox.strategies.cacheFirst()
+)
 
 self.addEventListener('notificationclick', (event) => {
   let notification = event.notification
@@ -46,3 +55,5 @@ self.addEventListener('push', event =>{
     self.registration.showNotification(data.title, options)
   )
 })
+
+workbox.precache([])
